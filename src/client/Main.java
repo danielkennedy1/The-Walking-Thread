@@ -1,9 +1,6 @@
 package client;
 
-import java.io.IOException;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.Socket;
@@ -43,8 +40,17 @@ public class Main {
                 out.writeObject(message);
 
                 System.out.println("Message sent to " + serverAddress + ":" + serverPort);
+
+                //listen for response from server
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                Message response = (Message) inputStream.readObject();
+
+                System.out.println("Response received from " + response.SERVER_ADDRESS + ":" + response.SERVER_PORT);
+                System.out.println("Response content: " + response.CONTENT);
             } catch (IOException e) {
                 System.err.println("Error connecting to server: " + e.getMessage());
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
             }
         }
     }
