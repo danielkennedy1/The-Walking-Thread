@@ -6,7 +6,8 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.util.Scanner;
 
-import util.Message;
+import util.*;
+
 
 public class Main {
 
@@ -29,19 +30,27 @@ public class Main {
 
         boolean running = true;
 
+        String myName = "Daniel";
+
         while (running){
             System.out.print("Enter message: ");
-            String content = scanner.nextLine();
+            String input = scanner.nextLine();
 
             try (Socket socket = new Socket(serverAddress, serverPort);
                  //PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
                  ObjectOutput out = new ObjectOutputStream(socket.getOutputStream())) {
-
-                Message message = new Message(serverAddress, serverPort, ipAddress.getHostAddress(), socket.getLocalPort(), macAddress, content);
+                Message message;
+                if(input.charAt(0) == '/'){
+                    String commandString = input.split("\s")[0];
+                    String operand = input.substring(commandString.length());
+                    message = new CommandMessage(serverAddress, serverPort, ipAddress.getHostAddress(), socket.getLocalPort(), macAddress, operand, Command.getCommand(commandString));
+                }else{
+                    message = new Chat(serverAddress, serverPort, ipAddress.getHostAddress(), socket.getLocalPort(), macAddress, input, myName);
+                }
 
                 out.writeObject(message);
 
-                if (message.toString().equals("exit")){
+                if (message.toString().equals("/exit")) {
                     running = false;
                 }
 
