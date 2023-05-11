@@ -27,7 +27,9 @@ public class Main {
         }
         String macAddress = sb.toString();
 
-        while (true){
+        boolean running = true;
+
+        while (running){
             System.out.print("Enter message: ");
             String content = scanner.nextLine();
 
@@ -39,14 +41,18 @@ public class Main {
 
                 out.writeObject(message);
 
+                if (message.toString().equals("exit")){
+                    running = false;
+                }
+
                 System.out.println("Message sent to " + serverAddress + ":" + serverPort);
 
                 //listen for response from server
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 Message response = (Message) inputStream.readObject();
 
-                System.out.println("Response received from " + response.SERVER_ADDRESS + ":" + response.SERVER_PORT);
-                System.out.println("Response content: " + response.CONTENT);
+                System.out.println("Response received from " + response.getServerAddress() + ":" + response.getServerPort());
+                System.out.println("Response content: " + response);
             } catch (IOException e) {
                 System.err.println("Error connecting to server: " + e.getMessage());
             } catch (ClassNotFoundException e) {

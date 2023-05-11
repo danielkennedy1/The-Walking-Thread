@@ -3,25 +3,50 @@ package util;
 import java.io.Serializable;
 
 public class Message implements Serializable {
-    public String SERVER_ADDRESS;
-    public int SERVER_PORT;
+    private final String serverAddress;
+    private final int serverPort;
     
-    public String CLIENT_ADDRESS;
-    public int CLIENT_PORT;
+    private final String clientAddress;
+    private final int clientPort;
     
-    public String CLIENT_MAC_ADDRESS;
+    private final String clientMacAddress;
 
-    public String CONTENT;
+    private final String content;
     
     public Message(String serverAddress, int serverPort, String clientAddress, int clientPort, String clientMacAddress, String content) {
-        this.SERVER_ADDRESS = serverAddress;
-        this.SERVER_PORT = serverPort;
+        this.serverAddress = serverAddress;
+        this.serverPort = serverPort;
         
-        this.CLIENT_ADDRESS = clientAddress;
-        this.CLIENT_PORT = clientPort;
+        this.clientAddress = clientAddress;
+        this.clientPort = clientPort;
         
-        this.CLIENT_MAC_ADDRESS = clientMacAddress;
+        this.clientMacAddress = clientMacAddress;
 
-        this.CONTENT = content;
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        return content;
+    }
+
+    public String getServerAddress() {
+        return serverAddress;
+    }
+
+    public int getServerPort() {
+        return serverPort;
+    }
+
+    public String getClientAddress() {
+        return clientAddress;
+    }
+
+    public int getClientPort() {
+        return clientPort;
+    }
+
+    public String getClientMacAddress() {
+        return clientMacAddress;
     }
 }
