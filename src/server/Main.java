@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import util.Message;
+import util.*;
 
 public class Main {
 
@@ -23,29 +23,56 @@ public class Main {
             try {
                 Message messageIn = (Message) inputStream.readObject();
                 System.out.println("Message received from " + messageIn.getClientAddress() + ":" + messageIn.getClientPort());
-                System.out.println("Message content: " + messageIn);
-                if(messageIn.toString().equals("kill")) {
-                    running = false;
-                }
+                String responseContent = "";
+                switch (messageIn.getClass().getSimpleName()) {
+                    case "Chat":
+                        System.out.println(((Chat) messageIn).getSenderName() + ": " + messageIn);
+                        responseContent = "You sent a chat!";
+                        break;
+                    case "CommandMessage":
+                        System.out.println("Command received: " + ((CommandMessage) messageIn).getCommand());
+                        responseContent = processCommand(((CommandMessage) messageIn).getCommand(), ((CommandMessage) messageIn).getOperand());
+                        break;
+                    default:
+                        System.out.println("Unknown message type received");
+                        responseContent = "Unknown message type received";
+                        break;
 
-                //reverse the message and send it back to the client
-                ObjectOutput out = new ObjectOutputStream(clientSocket.getOutputStream());
-                Message messageOut = new Message(
+                }
+                //return response
+                ObjectOutputStream outputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                outputStream.writeObject(new Chat(
                         messageIn.getServerAddress(),
                         messageIn.getServerPort(),
                         messageIn.getClientAddress(),
                         messageIn.getClientPort(),
                         messageIn.getClientMacAddress(),
-                        new StringBuilder(messageIn.toString()).reverse().toString()
-                );
-                out.writeObject(messageOut);
-
-                System.out.println("Response sent to " + messageOut.getClientAddress() + ":" + messageOut.getClientPort());
-                System.out.println("Response content: " + messageOut);
+                        responseContent,
+                        "Server"
+                        ));
+                if(responseContent.equals("Killing server")){
+                    running = false;
+                }
+                clientSocket.close();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            clientSocket.close();
         }
+    }
+
+    public void processCommand(Command command){
+        processCommand(command, "");
+    }
+    static String processCommand(Command command, String operand){
+        String result = "";
+        switch (command){
+            case KILL:
+                result = "Killing server";
+                break;
+            case REVERSE:
+                result = new StringBuilder(operand).reverse().toString();
+                break;
+        }
+        return result;
     }
 }
