@@ -6,12 +6,14 @@ import java.net.NetworkInterface;
 import java.net.Socket;
 import java.util.Scanner;
 
+import UI.practice;
 import util.*;
 
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
         Scanner scanner = new Scanner(System.in);
 
         String serverAddress = "127.0.0.1"; // Replace with the actual server address
@@ -32,9 +34,14 @@ public class Main {
 
         String myName = "Daniel";
 
+ //       practice mainwindow = new practice();
+ //       messarounfwith mainwindow = new messarounfwith();
         while (running){
+
+//            String input = mainwindow.getMessage();
             System.out.print("Enter message: ");
             String input = scanner.nextLine();
+
 
             try (Socket socket = new Socket(serverAddress, serverPort);
                  //PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {

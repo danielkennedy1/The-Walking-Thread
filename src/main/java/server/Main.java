@@ -72,7 +72,11 @@ public class Main {
             case REVERSE:
                 result = new StringBuilder(operand).reverse().toString();
                 break;
-        }
+            case QUOTE:
+                result = new QuotableAPI().toString();
+                break;
+            }
+
         return result;
     }
 }

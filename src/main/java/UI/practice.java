@@ -17,6 +17,10 @@ public class practice {
     private JTextField inputField;
     private String message;
 
+    public static void main(String[] args){
+        practice mainwindow = new practice();
+    }
+
     public practice() {
         JFrame frame = new JFrame("Chat GUI Example");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,8 +40,10 @@ public class practice {
         responseArea = new JTextArea();
         responseArea.setEditable(false);
         JScrollPane responseScrollPane = new JScrollPane(responseArea);
-        responsePanel.add(responseScrollPane, BorderLayout.CENTER);
-        panel.add(responsePanel, BorderLayout.EAST);
+        messagesPanel.add(responseScrollPane, BorderLayout.CENTER);
+        JLabel label123 = new JLabel("this is the response area");
+        responseArea.add(label123);
+        panel.add(responsePanel, BorderLayout.CENTER);
 
         JPanel inputPanel = new JPanel(new BorderLayout());
         inputField = new JTextField(20);
@@ -82,12 +88,8 @@ public class practice {
         return "This is the response.";
     }
 
-    public static void main(String[] args) {
-        new practice();
-    }
-
     public String getMessage(){
-        return "hello";
+        return message;
     }
 }
 
