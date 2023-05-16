@@ -39,7 +39,8 @@ public class Main {
         out.flush();
         in = new ObjectInputStream(socket.getInputStream());
 
-        myName = "Daniel";
+        System.out.print("Enter your name: ");
+        myName = scanner.nextLine();
 
         // Create separate threads for input and output
         Thread inputThread = new Thread(Main::handleInput);

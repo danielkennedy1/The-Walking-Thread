@@ -2,6 +2,7 @@ package util;
 
 public enum Command {
     REVERSE,
+    JOKE,
     KILL,
     EXIT;
     public static Command getCommand(String command) {
@@ -9,6 +10,7 @@ public enum Command {
             case "/reverse" -> REVERSE;
             case "/kill" -> KILL;
             case "/exit" -> EXIT;
+            case "/joke" -> JOKE;
             default -> null;
         };
     }
@@ -18,6 +20,7 @@ public enum Command {
             case REVERSE -> "/reverse";
             case KILL -> "/kill";
             case EXIT -> "/exit";
+            case JOKE -> "/joke";
         };
     }
 }

@@ -68,8 +68,12 @@ public class Connection implements Runnable {
                 output.flush();
             }
         } catch (IOException | ClassNotFoundException e) {
-            System.err.println("Error handling client connection: " + e.getMessage());
-            e.printStackTrace();
+            if (e.getMessage().equals("Connection reset")) {
+                System.out.println("Client disconnected");
+            } else {
+                System.err.println("Error handling client connection: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
         finally {
             // Clean up resources
@@ -85,10 +89,7 @@ public class Connection implements Runnable {
             }
         }
     }
-    public void processCommand(Command command){
-        processCommand(command, "");
-    }
-    static String processCommand(Command command, String operand){
+    static String processCommand(Command command, String operand) throws IOException {
         String result = "";
         switch (command){
             case KILL:
@@ -99,6 +100,9 @@ public class Connection implements Runnable {
                 break;
             case EXIT:
                 result = "Exiting server";
+                break;
+            case JOKE:
+                result = DadJokeService.getJoke();
                 break;
         }
         return result;
