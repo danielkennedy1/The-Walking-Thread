@@ -1,12 +1,11 @@
-package server;
+package util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-//import google.gson.Gson;
-//import google.gson.JsonObject;
+import com.google.gson.Gson;
 
 
 public class QuotableAPI {
@@ -30,13 +29,14 @@ public class QuotableAPI {
                 }
                 reader.close();
 
-//                Gson gson = new Gson();
-//                JsonObject jsonObject = gson.fromJson(response.toString(), JsonObject.class);
-//
-//                // Extract content and author
-//                String content = jsonObject.get("content").getAsString();
-//                String author = jsonObject.get("author").getAsString();
-                return response.toString();
+                Gson gson = new Gson();
+
+                gson.toJson(response.toString());
+
+                String quote = gson.fromJson("quote", String.class);
+                String author = gson.fromJson("author", String.class);
+
+                return "\"" + quote + "\"" + " - " + author;
             } else {
                 System.out.println("Error: " + responseCode);
             }
