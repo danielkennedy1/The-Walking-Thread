@@ -62,43 +62,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
-
-
-        /*
-        while (running){
-            System.out.print("Enter message: ");
-            String input = scanner.nextLine();
-
-                            Message message;
-                if(input.charAt(0) == '/'){
-                    String commandString = input.split("\s")[0];
-                    String operand = input.substring(commandString.length());
-                    message = new CommandMessage(serverAddress, serverPort, ipAddress.getHostAddress(), socket.getLocalPort(), macAddress, operand, Command.getCommand(commandString));
-                }else{
-                    message = new Chat(serverAddress, serverPort, ipAddress.getHostAddress(), socket.getLocalPort(), macAddress, input, myName);
-                }
-
-                out.writeObject(message);
-
-                if (message.toString().equals("/exit")) {
-                    running = false;
-                }
-
-                System.out.println("Message sent to " + serverAddress + ":" + serverPort);
-
-                out.flush();
-
-                Message response = (Message) inputStream.readObject();
-
-                System.out.println("Response received from " + response.getServerAddress() + ":" + response.getServerPort());
-                System.out.println("Response content: " + response);
-            } }catch (IOException e) {
-                System.err.println("Error connecting to server: " + e.getMessage());
-                e.printStackTrace();
-           } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }*/
-        }
+    }
     private static void handleInput(){
         try{
             while (socket.isConnected()){
