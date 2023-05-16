@@ -33,7 +33,7 @@ public class Connection implements Runnable {
                 switch (messageIn.getClass().getSimpleName()) {
                     case "Chat":
                         System.out.println(((Chat) messageIn).getSenderName() + ": " + messageIn);
-                        responseContent = "You sent a chat!";
+                        responseContent = ((Chat) messageIn).getSenderName() + ": " + messageIn;
                         break;
                     case "CommandMessage":
                         System.out.println("Command received: " + ((CommandMessage) messageIn).getCommand());
