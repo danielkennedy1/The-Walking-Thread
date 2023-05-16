@@ -31,15 +31,14 @@ public class Main {
         boolean running = true;
 
         String myName = "Daniel";
-
+        try (Socket socket = new Socket(serverAddress, serverPort);
+             ObjectOutput out = new ObjectOutputStream(socket.getOutputStream())) {
+            ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
         while (running){
             System.out.print("Enter message: ");
             String input = scanner.nextLine();
 
-            try (Socket socket = new Socket(serverAddress, serverPort);
-                 //PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
-                 ObjectOutput out = new ObjectOutputStream(socket.getOutputStream())) {
-                Message message;
+                            Message message;
                 if(input.charAt(0) == '/'){
                     String commandString = input.split("\s")[0];
                     String operand = input.substring(commandString.length());
@@ -56,17 +55,18 @@ public class Main {
 
                 System.out.println("Message sent to " + serverAddress + ":" + serverPort);
 
-                //listen for response from server
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                out.flush();
+
                 Message response = (Message) inputStream.readObject();
 
                 System.out.println("Response received from " + response.getServerAddress() + ":" + response.getServerPort());
                 System.out.println("Response content: " + response);
-            } catch (IOException e) {
+            } }catch (IOException e) {
                 System.err.println("Error connecting to server: " + e.getMessage());
-            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+           } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
-    }
+
 }
