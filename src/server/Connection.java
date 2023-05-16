@@ -89,7 +89,7 @@ public class Connection implements Runnable {
             }
         }
     }
-    static String processCommand(Command command, String operand){
+    static String processCommand(Command command, String operand) throws IOException {
         String result = "";
         switch (command){
             case KILL:
@@ -100,6 +100,9 @@ public class Connection implements Runnable {
                 break;
             case EXIT:
                 result = "Exiting server";
+                break;
+            case JOKE:
+                result = DadJokeService.getJoke();
                 break;
         }
         return result;
