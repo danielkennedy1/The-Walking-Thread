@@ -73,7 +73,7 @@ public class Main {
                 result = new StringBuilder(operand).reverse().toString();
                 break;
             case QUOTE:
-                result = new QuotableAPI().getQuote();
+                result = QuotableAPI.getQuote();
                 break;
             }
 

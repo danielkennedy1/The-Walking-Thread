@@ -1,4 +1,4 @@
-package server;
+package util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,9 +9,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
+
 public class QuotableAPI {
     public static String getQuote(){
-        // try make a connection to the api
+        // get a connection to the api
         try {
             URL url = new URL("https://api.quotable.io/random");
 
@@ -66,9 +67,7 @@ public class QuotableAPI {
                     System.out.println("Author field not found.");
                 }
 
-                String quoteDetails = (authorValue + ": " + quoteValue);
-
-            return quoteDetails;
+            return (authorValue + ": " + quoteValue);
             } else {
                 System.out.println("Error: " + responseCode);
             }
@@ -79,7 +78,6 @@ public class QuotableAPI {
             e.printStackTrace();
         }
 
-        String errors = "error, api not found";
-        return errors;
+        return "error, api not found";
     }
 }
