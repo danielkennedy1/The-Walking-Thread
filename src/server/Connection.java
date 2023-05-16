@@ -36,11 +36,11 @@ public class Connection implements Runnable {
                         responseContent = ((Chat) messageIn).getSenderName() + ": " + messageIn;
                         break;
                     case "CommandMessage":
-                        System.out.println("Command received: " + ((CommandMessage) messageIn).getCommand());
                         responseContent = processCommand(((CommandMessage) messageIn).getCommand(), ((CommandMessage) messageIn).getOperand());
                         break;
                     default:
-                        System.out.println("Unknown message type received");
+                        System.err.println("Unknown message type received");
+                        System.err.println(messageIn);
                         responseContent = "Unknown message type received";
                         break;
 
