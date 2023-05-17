@@ -23,7 +23,9 @@ public class SynchronizedLogger implements Runnable{
         try {
             FileWriter writer = new FileWriter("src/util/logger.txt", true);
             String stringSocketAddress = String.valueOf(clientSocket.getLocalSocketAddress());
-            String text = stringSocketAddress + " " + messageIn + " " + responseContent +"\n";
+            LocalTime logTime = LocalTime.now();
+            String logString = String.valueOf(logTime);
+            String text = stringSocketAddress + " " + messageIn + " " + responseContent + " " + logString + "\n";
             writer.write(text);
             writer.close();
         } catch (IOException e) {

@@ -7,3 +7,10 @@
 /127.0.0.1:12345 does the file flush john: does the file flush
 /127.0.0.1:12345 nope, no it does not john: nope, no it does not
 /127.0.0.1:12345 is this text file shared? john2: is this text file shared?
+/127.0.0.1:12345 hello john: hello 23:04:42.391680
+/127.0.0.1:12345 time  john: time  23:04:47.007188400
+/127.0.0.1:12345 /quote Woody Allen: It seemed the world was divided into good and bad people. The good ones slept better... while the bad ones seemed to enjoy the waking hours much more. 23:05:12.198850700
+/127.0.0.1:12345 /joke I remember when I was a kid, I opened my fridge and noticed one of my vegetables were crying. I guess I have some emotional cabbage. 23:05:20.348435200
+/127.0.0.1:12345 /joke No matter how kind you are, German children are kinder. 23:05:33.274602700
+/127.0.0.1:12345 /joke What do you call a cow with two legs? Lean beef. 23:05:47.807090400
+/127.0.0.1:12345 /joke People saying 'boo! to their friends has risen by 85% in the last year.... That's a frightening statistic. 23:05:54.321974400
