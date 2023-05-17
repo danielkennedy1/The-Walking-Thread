@@ -13,8 +13,19 @@ import util.*;
 
 
 public class Main {
+    private static String serverAddress;
+    private static int serverPort;
+    private static InetAddress ipAddress;
+    private static String macAddress;
+
+    private static ObjectOutputStream out;
+    private static ObjectInputStream in;
+    private static String myName;
+    private static final Scanner scanner = new Scanner(System.in);
+    private static Socket socket;
 
     public static void main(String[] args) throws IOException {
+<<<<<<< HEAD:src/main/java/client/Main.java
 
         Scanner scanner = new Scanner(System.in);
 
@@ -25,17 +36,29 @@ public class Main {
         InetAddress ipAddress = InetAddress.getLocalHost();
         NetworkInterface network = NetworkInterface.getByInetAddress(ipAddress);
         byte[] mac = network.getHardwareAddress();
+=======
+        serverAddress = "127.0.0.1";
+        serverPort = 12345;
+>>>>>>> ad189d3e2871fff1486598f57abe9769b830966b:src/client/Main.java
 
+        // Set client address and mac address for messages
+        ipAddress = InetAddress.getLocalHost();
+        byte[]mac = NetworkInterface.getByInetAddress(ipAddress).getHardwareAddress();
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < mac.length; i++) {
             sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));
         }
-        String macAddress = sb.toString();
+        macAddress = sb.toString();
 
-        boolean running = true;
+        socket = new Socket(serverAddress, serverPort);
+        out = new ObjectOutputStream(socket.getOutputStream());
+        out.flush();
+        in = new ObjectInputStream(socket.getInputStream());
 
-        String myName = "Daniel";
+        System.out.print("Enter your name: ");
+        myName = scanner.nextLine();
 
+<<<<<<< HEAD:src/main/java/client/Main.java
  //       practice mainwindow = new practice();
  //       messarounfwith mainwindow = new messarounfwith();
         while (running){
@@ -48,6 +71,48 @@ public class Main {
             try (Socket socket = new Socket(serverAddress, serverPort);
                  //PrintWriter out = new PrintWriter(socket.getOutputStream(), true)) {
                  ObjectOutput out = new ObjectOutputStream(socket.getOutputStream())) {
+=======
+        // Create separate threads for input and output
+        Thread inputThread = new Thread(Main::handleInput);
+        Thread outputThread = new Thread(Main::handleOutput);
+
+        try {
+            inputThread.start();
+            outputThread.start();
+            inputThread.join();
+            outputThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }finally {
+            try{
+                in.close();
+                out.close();
+                socket.close();
+            }  catch (IOException e) {
+                System.err.println("Error closing connection: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+    private static void handleInput(){
+        try{
+            while (socket.isConnected()){
+                Message message = (Message) in.readObject();
+                System.out.println(message);
+                System.out.print(">");
+            }
+        } catch (IOException | ClassNotFoundException e){
+            if (e.getMessage() != null){
+                System.err.println("Error reading from server: " + e.getMessage());
+            }
+        }
+    }
+    private static void handleOutput(){
+        try{
+            System.out.print(">");
+            while (socket.isConnected()){
+                String input = scanner.nextLine();
+>>>>>>> ad189d3e2871fff1486598f57abe9769b830966b:src/client/Main.java
                 Message message;
                 if(input.charAt(0) == '/'){
                     String commandString = input.split("\s")[0];
@@ -58,24 +123,15 @@ public class Main {
                 }
 
                 out.writeObject(message);
+                out.flush();
 
                 if (message.toString().equals("/exit")) {
-                    running = false;
+                    socket.close();
+                    System.exit(0);
                 }
-
-                System.out.println("Message sent to " + serverAddress + ":" + serverPort);
-
-                //listen for response from server
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                Message response = (Message) inputStream.readObject();
-
-                System.out.println("Response received from " + response.getServerAddress() + ":" + response.getServerPort());
-                System.out.println("Response content: " + response);
-            } catch (IOException e) {
-                System.err.println("Error connecting to server: " + e.getMessage());
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
             }
+        } catch (IOException  e){
+            System.err.println("Error sending to server: " + e.getMessage());
         }
     }
 }
