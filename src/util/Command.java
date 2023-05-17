@@ -3,11 +3,18 @@ package util;
 import java.io.IOException;
 
 public enum Command {
-    REVERSE,
-    JOKE,
-    QUOTE,
-    KILL,
-    EXIT;
+    REVERSE("/reverse will reverse the proceeding string"),
+    JOKE("/joke will tell you a funny dad joke"),
+    QUOTE("/quote will tell you a famous quote"),
+    KILL("/kill will stop the server from running"),
+    HELP("/help will print descriptions of all command words"),
+    EXIT("/exit will stop a clients session with the server");
+
+    private final String description;
+
+    Command(String description) {
+        this.description = description;
+    }
     public static Command getCommand(String command) {
         return switch (command) {
             case "/reverse" -> REVERSE;
@@ -15,6 +22,7 @@ public enum Command {
             case "/exit" -> EXIT;
             case "/joke" -> JOKE;
             case "/quote" -> QUOTE;
+            case "/help" -> HELP;
             default -> null;
         };
     }
@@ -26,6 +34,7 @@ public enum Command {
             case EXIT -> "/exit";
             case JOKE -> "/joke";
             case QUOTE -> "/quote";
+            case HELP -> "/help";
         };
     }
     public static String processCommand(Command command, String operand) throws IOException {
@@ -45,7 +54,22 @@ public enum Command {
                 break;
             case QUOTE:
                 result = QuotesAPI.getQuote();
+                break;
+            case HELP:
+                result = getDescription();
+                break;
         }
         return result;
+    }
+
+    public static String getDescription() {
+        System.out.println("getdesc called");
+        StringBuilder stringBuilderOfDescriptions = new StringBuilder("");
+        for (Command command : Command.values()) {
+            stringBuilderOfDescriptions.append(command + ": " + command.description + "\n");
+        }
+        String stringOfDescriptions = stringBuilderOfDescriptions.toString();
+        System.out.println(stringOfDescriptions);
+        return stringOfDescriptions;
     }
 }
