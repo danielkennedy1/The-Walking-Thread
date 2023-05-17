@@ -104,6 +104,8 @@ public class Connection implements Runnable {
             case JOKE:
                 result = DadJokeService.getJoke();
                 break;
+            case QUOTE:
+                result = QuotesAPI.getQuote();
         }
         return result;
     }

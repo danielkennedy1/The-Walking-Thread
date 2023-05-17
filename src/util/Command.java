@@ -3,6 +3,7 @@ package util;
 public enum Command {
     REVERSE,
     JOKE,
+    QUOTE,
     KILL,
     EXIT;
     public static Command getCommand(String command) {
@@ -11,6 +12,7 @@ public enum Command {
             case "/kill" -> KILL;
             case "/exit" -> EXIT;
             case "/joke" -> JOKE;
+            case "/quote" -> QUOTE;
             default -> null;
         };
     }
@@ -21,6 +23,7 @@ public enum Command {
             case KILL -> "/kill";
             case EXIT -> "/exit";
             case JOKE -> "/joke";
+            case QUOTE -> "/quote";
         };
     }
 }
