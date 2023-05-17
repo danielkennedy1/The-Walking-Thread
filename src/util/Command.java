@@ -1,5 +1,7 @@
 package util;
 
+import java.io.IOException;
+
 public enum Command {
     REVERSE,
     JOKE,
@@ -25,5 +27,25 @@ public enum Command {
             case JOKE -> "/joke";
             case QUOTE -> "/quote";
         };
+    }
+    public static String processCommand(Command command, String operand) throws IOException {
+        String result = "";
+        switch (command){
+            case KILL:
+                result = "Killing server";
+                break;
+            case REVERSE:
+                result = new StringBuilder(operand).reverse().toString();
+                break;
+            case EXIT:
+                result = "Exiting server";
+                break;
+            case JOKE:
+                result = DadJokeService.getJoke();
+                break;
+            case QUOTE:
+                result = QuotesAPI.getQuote();
+        }
+        return result;
     }
 }

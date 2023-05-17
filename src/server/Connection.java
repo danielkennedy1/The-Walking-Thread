@@ -36,7 +36,7 @@ public class Connection implements Runnable {
                         responseContent = ((Chat) messageIn).getSenderName() + ": " + messageIn;
                         break;
                     case "CommandMessage":
-                        responseContent = processCommand(((CommandMessage) messageIn).getCommand(), ((CommandMessage) messageIn).getOperand());
+                        responseContent = Command.processCommand(((CommandMessage) messageIn).getCommand(), ((CommandMessage) messageIn).getOperand());
                         break;
                     default:
                         System.err.println("Unknown message type received");
@@ -88,25 +88,5 @@ public class Connection implements Runnable {
                 System.err.println("Error closing client connection: " + e.getMessage());
             }
         }
-    }
-    static String processCommand(Command command, String operand) throws IOException {
-        String result = "";
-        switch (command){
-            case KILL:
-                result = "Killing server";
-                break;
-            case REVERSE:
-                result = new StringBuilder(operand).reverse().toString();
-                break;
-            case EXIT:
-                result = "Exiting server";
-                break;
-            case JOKE:
-                result = DadJokeService.getJoke();
-                break;
-            case QUOTE:
-                result = QuotesAPI.getQuote();
-        }
-        return result;
     }
 }
