@@ -46,6 +46,10 @@ public class Connection implements Runnable {
 
                 }
 
+                SynchronizedLogger logger = new SynchronizedLogger(clientSocket, messageIn.toString(), responseContent);
+                Thread loggerThread = new Thread(logger);
+                loggerThread.start();
+
                 if(responseContent.equals("Exiting server")){
                     running = false;
                 }
@@ -67,6 +71,7 @@ public class Connection implements Runnable {
                 ));
                 output.flush();
             }
+
         } catch (IOException | ClassNotFoundException e) {
             if (e.getMessage().equals("Connection reset")) {
                 System.out.println("Client disconnected");

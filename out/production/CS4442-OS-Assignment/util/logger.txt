@@ -1,0 +1,8 @@
+/127.0.0.1:12345 /quote Aristotle: Love is composed of a single soul inhabiting two bodies.
+/127.0.0.1:12345 hi john: hi
+/127.0.0.1:12345 hello john: hello
+/127.0.0.1:12345 goodbye john: goodbye
+/127.0.0.1:12345 /quote Abraham Lincoln: I walk slowly, but I never walk backward.
+/127.0.0.1:12345 /joke Why are snake races so exciting? They're always neck and neck.
+/127.0.0.1:12345 does the file flush john: does the file flush
+/127.0.0.1:12345 nope, no it does not john: nope, no it does not
