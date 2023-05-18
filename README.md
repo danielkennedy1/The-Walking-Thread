@@ -3,10 +3,10 @@ Operating Systems Assignment 18/05/23
 Daniel Kennedy and John Foley
 
 ## Running the program
--Navigate to Main.java file in server package: "src/server/Main.java"
--Run the server's main class. This creates the server which will continue to run
--Navigate to Main.java file in client package: "src/client/Main.java"
--Run the client's main class. This creates a client and connection to the server
+- Navigate to Main.java file in server package: "src/server/Main.java"
+- Run the server's main class. This creates the server which will continue to run
+- Navigate to Main.java file in client package: "src/client/Main.java"
+- Run the client's main class. This creates a client and connection to the server
 
 ## Executing commands
 -Once the client is connected to the server, you will be prompted to enter your name is the console. 
