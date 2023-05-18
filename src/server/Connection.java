@@ -46,7 +46,7 @@ public class Connection implements Runnable {
 
                 }
 
-                SynchronizedLogger logger = new SynchronizedLogger(clientSocket, messageIn.toString(), responseContent);
+                SynchronizedLogger logger = new SynchronizedLogger(clientSocket, messageIn, responseContent);
                 Thread loggerThread = new Thread(logger);
                 loggerThread.start();
 

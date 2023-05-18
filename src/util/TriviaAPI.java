@@ -37,13 +37,13 @@ public class TriviaAPI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Pattern questionPattern = Pattern.compile("\"question\":\"(.*?)\"");
+        Pattern questionPattern = Pattern.compile("\"question\":\"([^\"]+)\"" );
         Matcher questionMatcher = questionPattern.matcher(response);
         if (questionMatcher.find()) {
             question = questionMatcher.group(1);
         }
 
-        Pattern answerPattern = Pattern.compile("\"correct_answer\":\"(.*?)\"");
+        Pattern answerPattern = Pattern.compile("\"correct_answer\":\"([^\"]+)\"" );
         Matcher answerMatcher = answerPattern.matcher(response);
         if (answerMatcher.find()) {
             correctAnswer = answerMatcher.group(1);
