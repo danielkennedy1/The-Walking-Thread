@@ -1,20 +1,17 @@
-/127.0.0.1:12345 /quote Aristotle: Love is composed of a single soul inhabiting two bodies.
-/127.0.0.1:12345 hi john: hi
-/127.0.0.1:12345 hello john: hello
-/127.0.0.1:12345 goodbye john: goodbye
-/127.0.0.1:12345 /quote Abraham Lincoln: I walk slowly, but I never walk backward.
-/127.0.0.1:12345 /joke Why are snake races so exciting? They're always neck and neck.
-/127.0.0.1:12345 does the file flush john: does the file flush
-/127.0.0.1:12345 nope, no it does not john: nope, no it does not
-/127.0.0.1:12345 is this text file shared? john2: is this text file shared?
-/127.0.0.1:12345 hello john: hello 23:04:42.391680
-/127.0.0.1:12345 time  john: time  23:04:47.007188400
-/127.0.0.1:12345 /quote Woody Allen: It seemed the world was divided into good and bad people. The good ones slept better... while the bad ones seemed to enjoy the waking hours much more. 23:05:12.198850700
-/127.0.0.1:12345 /joke I remember when I was a kid, I opened my fridge and noticed one of my vegetables were crying. I guess I have some emotional cabbage. 23:05:20.348435200
-/127.0.0.1:12345 /joke No matter how kind you are, German children are kinder. 23:05:33.274602700
-/127.0.0.1:12345 /joke What do you call a cow with two legs? Lean beef. 23:05:47.807090400
-/127.0.0.1:12345 /joke People saying 'boo! to their friends has risen by 85% in the last year.... That's a frightening statistic. 23:05:54.321974400
-/127.0.0.1:12345 /question  00:30:00.045843500
-/127.0.0.1:12345 /question  00:42:17.795697500
-/127.0.0.1:12345 /question  00:49:02.728598900
-/127.0.0.1:12345 /answer  00:49:12.612916800
+/127.0.0.1:12345 /question In the server hosting industry IaaS stands for... time: 2023-05-18T15:53:40.069738600
+/127.0.0.1:12345 /question What was the first commerically available computer processor? time: 2023-05-18T15:53:48.491413600
+/127.0.0.1:12345 /question Which of the following languages is used as a scripting language in the Unity 3D game engine? time: 2023-05-18T15:53:55.781147700
+/127.0.0.1:12345 /question Linus Sebastian is the creator of the Linux kernel, which went on to be used in Linux, Android, and Chrome OS. time: 2023-05-18T15:54:03.563852500
+/127.0.0.1:12345 /question What is known as &quot;the brain&quot; of the Computer? time: 2023-05-18T15:54:11.054208700
+/127.0.0.1:12345 /question Laserjet and inkjet printers are both examples of what type of printer? time: 2023-05-18T15:55:44.347700600
+/127.0.0.1:12345 /question How many cores does the Intel i7-6950X have? time: 2023-05-18T15:55:50.946385900
+/127.0.0.1:12345 /question What was the name given to Android 4.3? time: 2023-05-18T15:55:57.231800100
+/127.0.0.1:12345 /question Approximately how many Apple I personal computers were created? time: 2023-05-18T15:56:04.095711900
+/127.0.0.1:12345 /question How many bytes are in a single Kibibyte? time: 2023-05-18T15:56:11.986733200
+/127.0.0.1:12345 /question Nvidia&#039;s headquarters are based in which Silicon Valley city? time: 2023-05-18T15:56:18.890482600
+/127.0.0.1:12345 /question The teapot often seen in many 3D modeling applications is called what? time: 2023-05-18T15:56:30.200848200
+/127.0.0.1:12345 /question What five letter word is the motto of the IBM Computer company? time: 2023-05-18T15:56:36.088419500
+/127.0.0.1:12345 /question What does the acronym CDN stand for in terms of networking? time: 2023-05-18T15:56:41.363647400
+/127.0.0.1:12345 /question Which of the following languages is used as a scripting language in the Unity 3D game engine? time: 2023-05-18T15:56:46.794785300
+/127.0.0.1:12345 /answer C# time: 2023-05-18T15:56:53.263513500
+/127.0.0.1:12345 /question In the programming language &quot;Python&quot;, which of these statements would display the string &quot;Hello World&quot; correctly? time: 2023-05-18T15:56:58.910027100
